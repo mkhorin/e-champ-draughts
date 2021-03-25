@@ -35,13 +35,9 @@ module.exports = {
         }
     },
     bots: {
-        'standardLevel1': require('./default-bot-standard-1'),
-        'standardLevel2': require('./default-bot-standard-2'),
-        'standardLevel3': require('./default-bot-standard-3'),
-        'standardLevel4': require('./default-bot-standard-4'),
-        'standardLevel5': require('./default-bot-standard-5')
+        'default': require('./default-bot')
     },
-    defaultBot: 'standardLevel1',
+    defaultBot: 'default',
     maxPlayers: 2,
     options: {
         actionTimeout: 90, // seconds

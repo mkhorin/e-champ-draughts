@@ -3,7 +3,14 @@ const handler = typeof room !== 'undefined' ? 'Draughts' : 'DraughtsPlayback';
 %>
 <link rel="stylesheet" href="game/draughts/style/draughts.css">
 <script src="game/draughts/vendor/draughts.min.js"></script>
-
+<%
+if (typeof room !== 'undefined') {
+    for (const bot of game.bots) {
+        const template = bot.getTemplate('play');
+        if (template) {
+%>
+<%- include(template, {bot}) %>
+<% }}} %>
 <div class="draughts play" data-handler="<%- handler %>">
 
     <div class="row">

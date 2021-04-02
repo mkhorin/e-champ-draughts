@@ -93,13 +93,6 @@ Club.Draughts = class Draughts extends Club.Play {
         this.toggleClass('hidden', true);
         this.page.toggleLoading(true);
         this.events.clear();
-        this.events.add(data.events);
-        this.processEvents();
-    }
-
-    processEvents () {
-        this.events.hiddenIndex = this.resolveLastHiddenEventIndex();
-        this.events.process();
     }
 
     resolveLastHiddenEventIndex () {

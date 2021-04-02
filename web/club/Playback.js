@@ -22,6 +22,8 @@ Club.DraughtsPlayback = class DraughtsPlayback extends Club.Draughts {
         super.start(...arguments);
         this.page.toggleLoading(false);
         this.toggleClass('hidden', false);
+        this.events.add(data.events);
+        this.processEvents();
     }
 
     processEvents () {
@@ -61,5 +63,11 @@ Club.DraughtsPlayback = class DraughtsPlayback extends Club.Draughts {
         this.toggleClass('paused', ...arguments);
     }
 
+    attachSocket () {}
+
     startCountdown () {}
+
+    resolveLastHiddenEventIndex () {
+        return -1;
+    }
 };

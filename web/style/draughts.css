@@ -326,7 +326,7 @@
 .draughts .player-loader {
     margin-left: 1rem;
     font-size: 1.4rem;
-    color: rgba(10,30,50,0.2);
+    color: rgba(10,30,50,0.3);
     transition: opacity .3s linear;
 }
 .draughts.master .player-loader,

@@ -5,7 +5,7 @@ Club.DraughtsPlayer = class DraughtsPlayer {
 
     static MESSAGE_READY = 'Ready';
     static MESSAGE_THINK = 'Thinking...';
-    static MESSAGE_WAIT = 'Waiting...';
+    static MESSAGE_WAIT = '...';
 
     constructor (play) {
         this.play = play;

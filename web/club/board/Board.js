@@ -57,4 +57,26 @@ Club.DraughtsBoard = class DraughtsBoard {
     resize () {
         this.play.$container.css('--board-size', `${this.$container.width()}px`);
     }
+
+    serialize () {
+        const pieces = [];
+        const cells = this.constructor.createCellArrays(this.size);
+        for (let x = 0; x < this.size; ++x) {
+            for (let y = 0; y < this.size; ++y) {
+                const {pos, piece} = this.cells[x][y];
+                const cell = {...pos, piece};
+                cells[pos.x][pos.y] = cell;
+                if (!piece) {
+                    continue;
+                }
+                cell.piece = {
+                    color: piece.color,
+                    crowned: piece.crowned,
+                    cell
+                };
+                pieces.push(cell.piece)
+            }
+        }
+        return {cells, pieces};
+    }
 };

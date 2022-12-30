@@ -5,251 +5,251 @@ const handler = typeof room !== 'undefined' ? 'Draughts' : 'DraughtsPlayback';
 <script src="game/draughts/vendor/draughts.min.js"></script>
 <%
 if (typeof room !== 'undefined') {
-    const bot = room.players[1].bot;
-    const template = bot?.getTemplate('play');
-    if (template) {
+  const bot = room.players[1].bot;
+  const template = bot?.getTemplate('play');
+  if (template) {
 %>
 <%- include(template, {bot}) %>
 <% }} %>
 <div class="draughts play" data-handler="<%- handler %>">
 
-    <div class="row">
+  <div class="row">
+    <div class="col-lg-7">
+
+      <div class="board-opponent-player opponent-player player d-lg-none" data-type="remote">
+        <div class="player-name"></div>
+        <div class="player-row">
+          <div class="player-avatar">
+            <span class="bot fas fa-robot"></span>
+            <span class="remote fas fa-user"></span>
+          </div>
+          <div class="player-stats">
+            <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
+            <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
+            <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
+          </div>
+          <div class="player-loader">
+            <i class="fa-sync-alt fa-spin fa"></i>
+          </div>
+        </div>
+        <div class="player-message"></div>
+      </div>
+
+      <div class="countdown">
+        <div class="countdown-value"></div>
+      </div>
+
+      <div class="board" data-size="8">
+        <div class="board-cells">
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="board-row">
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+            <div class="board-cell"></div>
+          </div>
+          <div class="pieces"></div>
+        </div>
+        <div class="board-x-axis">
+          <div class="board-axis-cell">a</div>
+          <div class="board-axis-cell">b</div>
+          <div class="board-axis-cell">c</div>
+          <div class="board-axis-cell">d</div>
+          <div class="board-axis-cell">e</div>
+          <div class="board-axis-cell">f</div>
+          <div class="board-axis-cell">g</div>
+          <div class="board-axis-cell">h</div>
+        </div>
+        <div class="board-y-axis">
+          <div class="board-axis-cell">8</div>
+          <div class="board-axis-cell">7</div>
+          <div class="board-axis-cell">6</div>
+          <div class="board-axis-cell">5</div>
+          <div class="board-axis-cell">4</div>
+          <div class="board-axis-cell">3</div>
+          <div class="board-axis-cell">2</div>
+          <div class="board-axis-cell">1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="row">
+
         <div class="col-lg-7">
 
-            <div class="board-opponent-player opponent-player player d-lg-none" data-type="remote">
-                <div class="player-name"></div>
-                <div class="player-row">
-                    <div class="player-avatar">
-                        <span class="bot fas fa-robot"></span>
-                        <span class="remote fas fa-user"></span>
-                    </div>
-                    <div class="player-stats">
-                        <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
-                        <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
-                        <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
-                    </div>
-                    <div class="player-loader">
-                        <i class="fa-sync-alt fa-spin fa"></i>
-                    </div>
+          <div class="center-panel">
+            <div class="opponent-player player " data-type="remote">
+              <div class="player-name"></div>
+              <div class="player-row">
+                <div class="player-avatar">
+                  <span class="bot fas fa-robot"></span>
+                  <span class="remote fas fa-user"></span>
                 </div>
-                <div class="player-message"></div>
+                <div class="player-stats">
+                  <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
+                  <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
+                  <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
+                </div>
+                <div class="player-loader">
+                  <i class="fa-sync-alt fa-spin fa"></i>
+                </div>
+              </div>
+              <div class="player-message"></div>
             </div>
 
-            <div class="countdown">
-                <div class="countdown-value"></div>
+            <div class="master-actions">
+              <button data-action="offerDraw" type="button" class="btn-outline-primary btn">
+                <span data-t="draughts">Offer a draw</span>
+              </button>
+              <button data-action="resign" type="button" class="btn-outline-danger btn">
+                <span data-t="draughts">Resign</span>
+              </button>
             </div>
 
-            <div class="board" data-size="8">
-                <div class="board-cells">
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="board-row">
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                        <div class="board-cell"></div>
-                    </div>
-                    <div class="pieces"></div>
+            <div class="round-end">
+              <div class="round-message">
+                <div class="round-message-won">
+                  <span data-t="draughts">Congratulations!</span>
+                  <br>
+                  <span data-t="draughts">You are a winner!</span>
                 </div>
-                <div class="board-x-axis">
-                    <div class="board-axis-cell">a</div>
-                    <div class="board-axis-cell">b</div>
-                    <div class="board-axis-cell">c</div>
-                    <div class="board-axis-cell">d</div>
-                    <div class="board-axis-cell">e</div>
-                    <div class="board-axis-cell">f</div>
-                    <div class="board-axis-cell">g</div>
-                    <div class="board-axis-cell">h</div>
-                </div>
-                <div class="board-y-axis">
-                    <div class="board-axis-cell">8</div>
-                    <div class="board-axis-cell">7</div>
-                    <div class="board-axis-cell">6</div>
-                    <div class="board-axis-cell">5</div>
-                    <div class="board-axis-cell">4</div>
-                    <div class="board-axis-cell">3</div>
-                    <div class="board-axis-cell">2</div>
-                    <div class="board-axis-cell">1</div>
-                </div>
+                <div class="round-message-lost" data-t="draughts">Alas, you have lost!</div>
+                <div class="round-message-drawn" data-t="draughts">Draw by agreement</div>
+              </div>
+              <div class="round-message-resign-winner" data-t="draughts">The opponent has resigned</div>
+              <div class="round-message-resign-loser" data-t="draughts">You have resigned</div>
+              <div class="round-end-footer">
+                <button data-action="continue" type="button" class="btn-primary btn">
+                  <span data-t="draughts">Continue</span>
+                </button>
+              </div>
             </div>
+
+            <div class="playback-actions">
+              <div class="btn-group" role="group">
+                <button type="button" class="playback-action-start btn-outline-primary btn">
+                  <i class="fas fa-fast-backward"></i>
+                </button>
+                <button type="button" class="playback-action-play btn-outline-success btn">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button type="button" class="playback-action-pause btn-outline-danger btn">
+                  <i class="fas fa-pause"></i>
+                </button>
+                <button type="button" class="playback-action-end btn-outline-primary btn">
+                  <i class="fas fa-fast-forward"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="master-player player" data-type="remote">
+              <div class="player-name"></div>
+              <div class="player-row">
+                <div class="player-avatar">
+                  <span class="remote fas fa-user"></span>
+                </div>
+                <div class="player-stats">
+                  <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
+                  <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
+                  <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
+                </div>
+              </div>
+              <div class="player-message"></div>
+            </div>
+          </div>
         </div>
 
         <div class="col-lg-5">
-            <div class="row">
-
-                <div class="col-lg-7">
-
-                    <div class="center-panel">
-                        <div class="opponent-player player " data-type="remote">
-                            <div class="player-name"></div>
-                            <div class="player-row">
-                                <div class="player-avatar">
-                                    <span class="bot fas fa-robot"></span>
-                                    <span class="remote fas fa-user"></span>
-                                </div>
-                                <div class="player-stats">
-                                    <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
-                                    <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
-                                    <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
-                                </div>
-                                <div class="player-loader">
-                                    <i class="fa-sync-alt fa-spin fa"></i>
-                                </div>
-                            </div>
-                            <div class="player-message"></div>
-                        </div>
-
-                        <div class="master-actions">
-                            <button data-action="offerDraw" type="button" class="btn-outline-primary btn">
-                                <span data-t="draughts">Offer a draw</span>
-                            </button>
-                            <button data-action="resign" type="button" class="btn-outline-danger btn">
-                                <span data-t="draughts">Resign</span>
-                            </button>
-                        </div>
-
-                        <div class="round-end">
-                            <div class="round-message">
-                                <div class="round-message-won">
-                                    <span data-t="draughts">Congratulations!</span>
-                                    <br>
-                                    <span data-t="draughts">You are a winner!</span>
-                                </div>
-                                <div class="round-message-lost" data-t="draughts">Alas, you have lost!</div>
-                                <div class="round-message-drawn" data-t="draughts">Draw by agreement</div>
-                            </div>
-                            <div class="round-message-resign-winner" data-t="draughts">The opponent has resigned</div>
-                            <div class="round-message-resign-loser" data-t="draughts">You have resigned</div>
-                            <div class="round-end-footer">
-                                <button data-action="continue" type="button" class="btn-primary btn">
-                                    <span data-t="draughts">Continue</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="playback-actions">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="playback-action-start btn-outline-primary btn">
-                                    <i class="fas fa-fast-backward"></i>
-                                </button>
-                                <button type="button" class="playback-action-play btn-outline-success btn">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                                <button type="button" class="playback-action-pause btn-outline-danger btn">
-                                    <i class="fas fa-pause"></i>
-                                </button>
-                                <button type="button" class="playback-action-end btn-outline-primary btn">
-                                    <i class="fas fa-fast-forward"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="master-player player" data-type="remote">
-                            <div class="player-name"></div>
-                            <div class="player-row">
-                                <div class="player-avatar">
-                                    <span class="remote fas fa-user"></span>
-                                </div>
-                                <div class="player-stats">
-                                    <div class="player-stat-won player-stat" title="Won" data-t="draughts"></div>
-                                    <div class="player-stat-lost player-stat" title="Lost" data-t="draughts"></div>
-                                    <div class="player-stat-drawn player-stat" title="Drawn" data-t="draughts"></div>
-                                </div>
-                            </div>
-                            <div class="player-message"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <div class="moves">
-                        <div class="moves-head" data-t="draughts">List of moves</div>
-                        <button data-action="copyPosition" class="btn-outline-secondary btn" type="button">
-                            <span data-t="draughts">Copy position</span>
-                        </button>
-                        <div class="moves-list"></div>
-                    </div>
-                </div>
-            </div>
+          <div class="moves">
+            <div class="moves-head" data-t="draughts">List of moves</div>
+            <button data-action="copyPosition" class="btn-outline-secondary btn" type="button">
+              <span data-t="draughts">Copy position</span>
+            </button>
+            <div class="moves-list"></div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <template data-id="movesItem">
-        <div class="moves-item">
-            <span class="moves-item-num">{{num}}.</span>
-            <span class="moves-item-text">{{text}}</span>
-        </div>
-    </template>
+  <template data-id="movesItem">
+    <div class="moves-item">
+      <span class="moves-item-num">{{num}}.</span>
+      <span class="moves-item-text">{{text}}</span>
+    </div>
+  </template>
 </div>

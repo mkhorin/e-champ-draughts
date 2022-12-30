@@ -1,462 +1,461 @@
-
 .draughts {
-    --board-x-axis: 2.5rem;
-    --board-y-axis: 1.5rem;
-    --board-cell-size: 12.5%;
-    --board-size: auto;
-    --player-1-color: #98bf3e;
-    --player-2-color: #5770b8;
+  --board-x-axis: 2.5rem;
+  --board-y-axis: 1.5rem;
+  --board-cell-size: 12.5%;
+  --board-size: auto;
+  --player-1-color: #98bf3e;
+  --player-2-color: #5770b8;
 
-    position: relative;
+  position: relative;
 }
 
 @keyframes draughts-blink {
-    50% {
-        opacity: .1;
-    }
+  50% {
+    opacity: .1;
+  }
 }
 
 .draughts .center-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: var(--board-size);
-    margin-bottom: 2.5rem;
-    padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: var(--board-size);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
 }
 
 /* BOARD */
 
 .draughts .board {
-    position: relative;
-    padding-left: var(--board-y-axis);
-    margin-bottom: 1rem;
-    height: var(--board-size);
-    color: #808890;
-    text-transform: uppercase;
-    user-select: none;
+  position: relative;
+  padding-left: var(--board-y-axis);
+  margin-bottom: 1rem;
+  height: var(--board-size);
+  color: #808890;
+  text-transform: uppercase;
+  user-select: none;
 }
 .draughts .board-cells {
-    position: relative;
-    height: calc(100% - var(--board-x-axis));
+  position: relative;
+  height: calc(100% - var(--board-x-axis));
 }
 .draughts .board-axis-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .draughts .board-x-axis {
-    display: flex;
-    height: var(--board-x-axis);
+  display: flex;
+  height: var(--board-x-axis);
 }
 .draughts .board-y-axis {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    height: calc(100% - var(--board-x-axis));
-    width: var(--board-y-axis);
-    left: -.5rem;
-    top: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: calc(100% - var(--board-x-axis));
+  width: var(--board-y-axis);
+  left: -.5rem;
+  top: 0;
 }
 .draughts.opposite .board-x-axis {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 .draughts.opposite .board-y-axis {
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
 }
 .draughts .board-x-axis .board-axis-cell {
-    width: var(--board-cell-size);
+  width: var(--board-cell-size);
 }
 .draughts .board-y-axis .board-axis-cell {
-    height: var(--board-cell-size);
+  height: var(--board-cell-size);
 }
 .draughts .board-cell {
-    height: 100%;
-    width: var(--board-cell-size);
-    pointer-events: none;
+  height: 100%;
+  width: var(--board-cell-size);
+  pointer-events: none;
 }
 .draughts .board-row {
-    display: flex;
-    height: var(--board-cell-size);
+  display: flex;
+  height: var(--board-cell-size);
 }
 .draughts .board-row:nth-child(odd) .board-cell:nth-child(even),
 .draughts .board-row:nth-child(even) .board-cell:nth-child(odd) {
-    background: #c0c6cd;
+  background: #c0c6cd;
 }
 .draughts.master .board-row:nth-child(odd) .board-cell:nth-child(even),
 .draughts.master .board-row:nth-child(even) .board-cell:nth-child(odd) {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
 /* PIECE */
 
 .draughts .pieces {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 .draughts .piece {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: var(--board-cell-size);
-    height: var(--board-cell-size);
-    pointer-events: none;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--board-cell-size);
+  height: var(--board-cell-size);
+  pointer-events: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .draughts.master .piece {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 .draughts .piece[data-color="light"] {
-    background-image: url(../image/light-man.svg);
+  background-image: url(../image/light-man.svg);
 }
 .draughts .piece[data-color="dark"] {
-    background-image: url(../image/dark-man.svg);
+  background-image: url(../image/dark-man.svg);
 }
 .draughts .piece.crowned[data-color="light"] {
-    background-image: url(../image/light-king.svg);
+  background-image: url(../image/light-king.svg);
 }
 .draughts .piece.crowned[data-color="dark"] {
-    background-image: url(../image/dark-king.svg);
+  background-image: url(../image/dark-king.svg);
 }
 .draughts.master .piece.selected {
-    animation: draughts-blink .4s ease infinite;
+  animation: draughts-blink .4s ease infinite;
 }
 .draughts .piece.captured {
-    border: 2px solid #a00;
+  border: 2px solid #a00;
 }
 
 /* COUNTDOWN */
 
 .draughts .countdown {
-    --rest: 100%;
-    position: relative;
-    height: 2px;
-    margin-bottom: 1.5rem;
-    background: #c00;
+  --rest: 100%;
+  position: relative;
+  height: 2px;
+  margin-bottom: 1.5rem;
+  background: #c00;
 }
 .draughts .countdown-value {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: var(--rest);
-    height: 100%;
-    background: #0c0;
-    transition: width .3s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--rest);
+  height: 100%;
+  background: #0c0;
+  transition: width .3s;
 }
 
 /* SIDEBAR */
 
 .draughts .master-actions {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .draughts.end .master-actions {
-    display: none;
+  display: none;
 }
 .draughts .master-actions .btn {
-    width: 100%;
-    margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 .draughts .master-actions .btn:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 .draughts:not(.master) .master-actions .btn,
 .draughts:not(.master) .round-end .btn {
-    opacity: .4;
-    filter: grayscale(.6);
-    pointer-events: none;
+  opacity: .4;
+  filter: grayscale(.6);
+  pointer-events: none;
 }
 
 /* PLAYERS */
 
 .draughts .players {
-    display: flex;
+  display: flex;
 }
 .draughts .player {
-    position: relative;
-    border-left: 2px solid #000;
-    padding-bottom: .5rem;
+  position: relative;
+  border-left: 2px solid #000;
+  padding-bottom: .5rem;
 }
 .draughts .player-name {
-    display: block;
-    padding: .2rem .6rem;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    color: rgba(255, 255, 255, .8);
-    font-weight: 500;
+  display: block;
+  padding: .2rem .6rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: rgba(255, 255, 255, .8);
+  font-weight: 500;
 }
 .draughts .player-row {
-    display: flex;
-    align-items: center;
-    margin-left: .5rem;
+  display: flex;
+  align-items: center;
+  margin-left: .5rem;
 }
 
 .draughts .player-avatar {
-    font-size: 36px;
-    line-height: 58px;
+  font-size: 36px;
+  line-height: 58px;
 }
 .draughts .player-avatar > span {
-    display: none;
+  display: none;
 }
 .draughts [data-type="bot"] .player-avatar .bot,
 .draughts [data-type="remote"] .player-avatar .remote {
-    display: inline-block;
+  display: inline-block;
 }
 .draughts .master-player {
-    border-color: var(--player-1-color);
+  border-color: var(--player-1-color);
 }
 .draughts .master-player .player-avatar {
-    color: var(--player-1-color);
+  color: var(--player-1-color);
 }
 .draughts .master-player .player-name {
-    background: var(--player-1-color);
+  background: var(--player-1-color);
 }
 .draughts .opponent-player {
-    border-color: var(--player-2-color);
+  border-color: var(--player-2-color);
 }
 .draughts .opponent-player .player-avatar {
-    color: var(--player-2-color);
+  color: var(--player-2-color);
 }
 .draughts .opponent-player .player-name {
-    background: var(--player-2-color);
+  background: var(--player-2-color);
 }
 .draughts .board-opponent-player {
-    margin-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .draughts.opposite .master-player {
-    border-color: var(--player-2-color);
+  border-color: var(--player-2-color);
 }
 .draughts.opposite .master-player .player-avatar {
-    color: var(--player-2-color);
+  color: var(--player-2-color);
 }
 .draughts.opposite .master-player .player-name {
-    background: var(--player-2-color);
+  background: var(--player-2-color);
 }
 .draughts.opposite .opponent-player {
-    border-color: var(--player-1-color);
+  border-color: var(--player-1-color);
 }
 .draughts.opposite .opponent-player .player-avatar {
-    color: var(--player-1-color);
+  color: var(--player-1-color);
 }
 .draughts.opposite .opponent-player .player-name {
-    background: var(--player-1-color);
+  background: var(--player-1-color);
 }
 
 .draughts .player-message {
-    position: absolute;
-    left: -2px;
-    top: 85px;
-    padding: .3rem .6rem;
-    background: #ffe;
-    border: 1px solid #999;
-    border-radius: 4px;
-    min-width: 4rem;
-    text-align: center;
-    z-index: 1;
+  position: absolute;
+  left: -2px;
+  top: 85px;
+  padding: .3rem .6rem;
+  background: #ffe;
+  border: 1px solid #999;
+  border-radius: 4px;
+  min-width: 4rem;
+  text-align: center;
+  z-index: 1;
 }
 .draughts .player-message:before {
-    content: "";
-    position: absolute;
-    left: 8px;
-    top: -5px;
-    height: 8px;
-    width: 8px;
-    background: #ffe;
-    transform: rotate(45deg);
-    border-bottom: none;
-    border-right: none;
-    border-top: inherit;
-    border-left: inherit;
-    box-shadow: inherit;
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: -5px;
+  height: 8px;
+  width: 8px;
+  background: #ffe;
+  transform: rotate(45deg);
+  border-bottom: none;
+  border-right: none;
+  border-top: inherit;
+  border-left: inherit;
+  box-shadow: inherit;
 }
 .draughts .player-message:empty {
-    display: none;
+  display: none;
 }
 
 .draughts .player-stats {
-    margin: .35rem 0 0 1rem;
+  margin: .35rem 0 0 1rem;
 }
 .draughts .player-stat {
-    position: relative;
-    display: inline-block;
-    padding: .2rem .5rem;
-    color: #000;
-    border-radius: 4px;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  position: relative;
+  display: inline-block;
+  padding: .2rem .5rem;
+  color: #000;
+  border-radius: 4px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .draughts .player-stat-won {
-    color: #008000;
-    background: #bbf0bb;
+  color: #008000;
+  background: #bbf0bb;
 }
 .draughts .player-stat-lost {
-    color: #800000;
-    background: #ffcaca;
+  color: #800000;
+  background: #ffcaca;
 }
 .draughts .player-stat-drawn {
-    color:#444;
-    background: #ccc;
+  color:#444;
+  background: #ccc;
 }
 .draughts .player[data-end="winner"] .player-stat-won {
-    color: #fff;
-    background: #00d000;
+  color: #fff;
+  background: #00d000;
 }
 .draughts .player[data-end="loser"] .player-stat-lost {
-    color: #fff;
-    background: #e00000;
+  color: #fff;
+  background: #e00000;
 }
 .draughts .player[data-end="draw"] .player-stat-drawn {
-    color: #fff;
-    background: #444;
+  color: #fff;
+  background: #444;
 }
 
 .draughts .player-loader {
-    margin-left: 1rem;
-    font-size: 1.4rem;
-    color: rgba(10,30,50,0.3);
-    transition: opacity .3s linear;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  color: rgba(10,30,50,0.3);
+  transition: opacity .3s linear;
 }
 .draughts.master .player-loader,
 .draughts.playback .player-loader {
-    opacity: 0;
+  opacity: 0;
 }
 
 /* ROUND END */
 
 .draughts .round-end {
-    display: none;
+  display: none;
 }
 .draughts.end .round-end {
-    display: block;
+  display: block;
 }
 .draughts .round-message {
-    position: relative;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 500;
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 .draughts .round-message > div {
-    display: none;
-    opacity: 0.9;
+  display: none;
+  opacity: 0.9;
 }
 .draughts .round-message-won {
-    color: #0a0;
+  color: #0a0;
 }
 .draughts .round-message-lost {
-    color: #a00;
+  color: #a00;
 }
 .draughts .round-message-drawn {
-    color: #555;
+  color: #555;
 }
 .draughts[data-end="winner"] .round-message .round-message-won,
 .draughts[data-end="loser"] .round-message .round-message-lost,
 .draughts[data-end="draw"] .round-message .round-message-drawn {
-    display: block;
+  display: block;
 }
 .draughts .round-message-resign-loser,
 .draughts .round-message-resign-winner {
-    display: none;
-    margin-top: .3rem;
-    text-align: center;
+  display: none;
+  margin-top: .3rem;
+  text-align: center;
 }
 .draughts.resigned[data-end="loser"] .round-message-resign-loser,
 .draughts.resigned[data-end="winner"] .round-message-resign-winner {
-    display: block;
+  display: block;
 }
 .draughts .round-end-footer {
-    margin-top: 1.5rem;
-    text-align: center;
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
 /* MOVE LIST */
 
 .draughts .moves {
-    display: flex;
-    flex-direction: column;
-    height: calc(var(--board-size) + .7rem);
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--board-size) + .7rem);
 }
 .draughts .moves-head {
-    padding-bottom: 1rem;
-    font-size: 1.2rem;
-    line-height: 1.1rem;
-    color: #888;
+  padding-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.1rem;
+  color: #888;
 }
 .draughts .moves .btn {
-    margin-bottom: .5rem;
+  margin-bottom: .5rem;
 }
 .draughts .moves-list {
-    flex-grow: 1;
-    overflow: auto;
-    padding: 1rem;
-    background: #e4e8eb;
-    color: #444;
+  flex-grow: 1;
+  overflow: auto;
+  padding: 1rem;
+  background: #e4e8eb;
+  color: #444;
 }
 .draughts .moves-item + .moves-item {
-    margin-top: .5rem;
+  margin-top: .5rem;
 }
 .draughts .moves-item-num {
-    color: #888;
+  color: #888;
 }
 
 /* PLAYBACK */
 
 .draughts .playback-actions .btn-group {
-    width: 100%;
+  width: 100%;
 }
 .draughts .playback-actions .btn:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 .draughts .playback-actions,
 .draughts.playback .master-actions,
 .draughts.playback .round-end-footer,
 .draughts.playback .playback-action-play,
 .draughts.playback.paused .playback-action-pause {
-    display: none;
+  display: none;
 }
 .draughts.playback.paused .playback-action-play,
 .draughts.playback .playback-actions {
-    display: block;
+  display: block;
 }
 
 @media (max-width: 990px) {
 
-    .draughts .center-panel {
-        display: block;
-        height: auto;
-    }
-    .draughts .center-panel .master-player {
-        margin-top: 1rem;
-    }
-    .draughts .center-panel .opponent-player {
-        display: none;
-    }
-    .draughts .master-actions {
-        display: flex;
-        justify-content: space-between;
-    }
-    .draughts .master-actions .btn {
-        width: 48%;
-    }
-    .draughts .round-end {
-        margin-bottom: 2rem;
-    }
-    .draughts .moves {
-        height: auto;
-    }
-    .draughts .playback-actions {
-        margin-bottom: 1.5rem;
-    }
+  .draughts .center-panel {
+    display: block;
+    height: auto;
+  }
+  .draughts .center-panel .master-player {
+    margin-top: 1rem;
+  }
+  .draughts .center-panel .opponent-player {
+    display: none;
+  }
+  .draughts .master-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  .draughts .master-actions .btn {
+    width: 48%;
+  }
+  .draughts .round-end {
+    margin-bottom: 2rem;
+  }
+  .draughts .moves {
+    height: auto;
+  }
+  .draughts .playback-actions {
+    margin-bottom: 1.5rem;
+  }
 }

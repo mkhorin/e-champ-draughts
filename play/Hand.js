@@ -9,7 +9,9 @@ module.exports = class Hand {
         this.play = play;
         this.player = player;
         this.pos = player.pos;
-        this.color = this.pos ? play.constructor.DARK : play.constructor.LIGHT;
+        this.color = this.pos
+            ? play.constructor.DARK
+            : play.constructor.LIGHT;
         this.turned = false;
     }
 

@@ -9,40 +9,34 @@ module.exports = class Options extends Base {
 
     static getConstants () {
         return {
-            ATTRS: [
-                {
-                    name: 'losing',
-                    label: 'Losing draughts',
-                    view: 'checkbox',
-                    format: 'boolean'
-                }, {
-                    name: 'darkFirst',
-                    label: 'Dark turn first',
-                    view: 'checkbox',
-                    format: 'boolean'
-                }, {
-                    name: 'initialPosition',
-                    label: 'Initial position',
-                    hint: 'Lc1, Le1+, Df8, Dd8+',
-                    view: 'string'
-                }
-            ],
+            ATTRS: [{
+                name: 'losing',
+                label: 'Losing draughts',
+                view: 'checkbox',
+                format: 'boolean'
+            }, {
+                name: 'darkFirst',
+                label: 'Dark turn first',
+                view: 'checkbox',
+                format: 'boolean'
+            }, {
+                name: 'initialPosition',
+                label: 'Initial position',
+                hint: 'Lc1, Le1+, Df8, Dd8+',
+                view: 'string'
+            }],
             RULES: [
-                [[
-                    'losing',
-                    'darkFirst'
-                ],  'checkbox'],
-                [[
-                    'initialPosition'
-                ],  'validateInitialPosition']
+                [['losing', 'darkFirst'],  'checkbox'],
+                [['initialPosition'],  'validateInitialPosition']
             ]
         };
     }
 
     validateInitialPosition (attr) {
         this.cells = {};
-        for (const data of this.get(attr).split(',') ) {
-            if (!this.validatePiece(data)) {
+        const items = this.get(attr).split(',');
+        for (const item of items) {
+            if (!this.validatePiece(item)) {
                 return this.addError(attr, 'Invalid position');
             }
         }
@@ -50,7 +44,13 @@ module.exports = class Options extends Base {
 
     validatePiece (data) {
         data = data.trim();
-        if (data.length > 4 || !this.validatePieceColor(data) || !this.validatePieceCell(data)) {
+        if (data.length > 4) {
+            return false;
+        }
+        if (!this.validatePieceColor(data)) {
+            return false;
+        }
+        if (!this.validatePieceCell(data)) {
             return false;
         }
         const id = data.substring(1, 3);

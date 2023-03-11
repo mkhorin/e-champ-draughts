@@ -21,7 +21,8 @@ module.exports = class Way {
         for (const point of this.points) {
             point.capture?.remove();
         }
-        this.piece.setPoint(this.getLast());
+        const last = this.getLast();
+        this.piece.setPoint(last);
     }
 
     serialize () {

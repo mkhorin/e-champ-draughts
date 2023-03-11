@@ -26,7 +26,8 @@ module.exports = class Board {
         for (let x = 0; x < size; ++x) {
             let row = [];
             for (let y = 0; y < size; ++y) {
-                let id = `${this.constructor.LETTERS.charAt(x)}${y + 1}`;
+                let char = this.constructor.LETTERS.charAt(x);
+                let id = `${char}${y + 1}`;
                 let cell = {x, y, id};
                 this.cellMap[id] = cell;
                 row.push(cell);

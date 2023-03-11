@@ -31,12 +31,13 @@ module.exports = class Draughts extends Base {
         this.board.create(this.options.boardSize);
         const pieces = this.options.initialPosition || this.getDefaultPosition();
         this.pieces.create(pieces);
-        this.addEvent('round', {
+        const data = {
             options: this.options,
             players: this.hands.map(hand => hand.getData()),
             round: this.round,
             pieces
-        });
+        };
+        this.addEvent('round', data);
         this.mover = null;
         this.nextTurn();
     }
@@ -54,17 +55,19 @@ module.exports = class Draughts extends Base {
                 : this.mover;
             return this.endRound(loser);
         }
-        this.addEvent('turn', {
+        const data = {
             mover: this.mover.pos,
             ways: this.ways.serialize()
-        });
+        };
+        this.addEvent('turn', data);
         this.update();
     }
 
     getNextHand (current) {
-        return current
-            ? this.hands[(current.pos + 1) % this.hands.length]
-            : this.hands[this.options.darkFirst ? 1: 0];
+        const index = current
+            ? (current.pos + 1) % this.hands.length
+            : (this.options.darkFirst ? 1 : 0);
+        return this.hands[index];
     }
 
     endRound (loser, params) {
@@ -77,19 +80,21 @@ module.exports = class Draughts extends Base {
         loser?.addLosing();
         this.finished = true;
         this.roundLoser = loser;
-        this.addEvent('end', {
+        const data = {
             loser: loser?.pos,
             winner: winner?.pos,
             draw1: draw1?.pos,
             draw2: draw2?.pos,
             ...params
-        });
+        };
+        this.addEvent('end', data);
         this.hands[0].turned = this.hands[0].isBot();
         this.hands[1].turned = this.hands[1].isBot();
     }
 
     arePlayersReady () {
-        return this.hands[0].turned && this.hands[1].turned;
+        return this.hands[0].turned
+            && this.hands[1].turned;
     }
 
     setPlayerReady (hand) {

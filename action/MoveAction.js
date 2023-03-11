@@ -14,7 +14,8 @@ module.exports = class MoveAction extends Base {
         if (this.isLastEvent('offerDraw')) {
             return this.setError('A draw offer in progress');
         }
-        this.way = this.play.ways.get(Number(this.data.way));
+        const index = Number(this.data.way);
+        this.way = this.play.ways.get(index);
         if (!this.way) {
             return this.setError('Way not found');
         }

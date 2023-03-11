@@ -18,7 +18,8 @@ module.exports = class BaseAction extends Base {
     }
 
     isMoverAndNotBot () {
-        return this.hand === this.play.mover && !this.opponent.isBot();
+        return this.hand === this.play.mover
+            && !this.opponent.isBot();
     }
 
     isLastEvent (name) {
@@ -34,7 +35,8 @@ module.exports = class BaseAction extends Base {
     }
 
     validateBase () {
-        return this.validatePlayer() && this.validateActiveRound();
+        return this.validatePlayer()
+            && this.validateActiveRound();
     }
 
     validateActiveRound () {

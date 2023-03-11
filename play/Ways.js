@@ -65,7 +65,9 @@ module.exports = class Ways {
             let y = this.way.piece.cell.y;
             let cell = null;
             while (true) {
-                cell = this.board.getCellByPos(x += dx, y += dy);
+                x += dx;
+                y += dy;
+                cell = this.board.getCellByPos(x, y);
                 if (!cell || cell.piece) {
                     break;
                 }
@@ -75,7 +77,8 @@ module.exports = class Ways {
     }
 
     appendWay (cell, crowned) {
-        this.ways.push(new Way(this.way.piece, [this.way.points[0], {cell, crowned}]));
+        const way = new Way(this.way.piece, [this.way.points[0], {cell, crowned}]);
+        this.ways.push(way);
     }
 
     resolveCaptures () {
@@ -123,7 +126,8 @@ module.exports = class Ways {
                 for (const point of points) {
                     const points = this.way.points.slice();
                     points.push(point);
-                    this.ways.push(new Way(this.way.piece, points));
+                    const way = new Way(this.way.piece, points);
+                    this.ways.push(way);
                 }
             }
             piece.captured = false;
@@ -132,14 +136,18 @@ module.exports = class Ways {
     }
 
     canCapture (piece) {
-        return piece && piece.color !== this.mover.color && !piece.captured;
+        return piece
+            && piece.color !== this.mover.color
+            && !piece.captured;
     }
 
     getClosestPiece (cell, dx, dy) {
         let x = cell.x;
         let y = cell.y;
         do {
-            cell = this.board.getCellByPos(x += dx, y += dy);
+            x += dx;
+            y += dy;
+            cell = this.board.getCellByPos(x, y);
         } while (cell && !cell.piece);
         return cell?.piece;
     }
@@ -165,7 +173,8 @@ module.exports = class Ways {
                 ? this.resolveKingCaptures()
                 : this.resolveManCaptures();
             if (!nextCapture) {
-                this.ways.push(new Way(this.way.piece, this.way.points.slice()));
+                const way = new Way(this.way.piece, this.way.points.slice());
+                this.ways.push(way);
             }
             this.way.points.pop();
             piece.captured = false;

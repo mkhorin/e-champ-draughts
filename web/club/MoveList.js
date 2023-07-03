@@ -24,7 +24,8 @@ Club.DraughtsMoveList = class DraughtsMoveList {
     addNew (way) {
         const num = this.$list.children().length + 1;
         const text = way.stringify();
-        this.$list.prepend(this.renderItem({num, text}));
+        const content = this.renderItem({num, text});
+        this.$list.prepend(content);
         this.previous = way;
     }
 

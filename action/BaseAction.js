@@ -46,8 +46,10 @@ module.exports = class BaseAction extends Base {
     }
 
     validateMover () {
-        return this.hand !== this.play.mover && !this.play.mover.isBot()
-            ? this.setError('Player cannot act now')
-            : true;
+        if (this.hand !== this.play.mover && !this.play.mover.isBot()) {
+            this.setError('Player cannot act now');
+            return false;
+        }
+        return true;
     }
 };

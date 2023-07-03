@@ -20,7 +20,8 @@ Club.DraughtsDefaultSolver = class DraughtsDefaultSolver {
 
     resolveMove (done) {
         this.done = done;
-        const index = Jam.Helper.random(0, this.play.ways.count() - 1);
+        const counter = this.play.ways.count();
+        const index = Jam.Helper.random(0, counter - 1);
         this.complete(index);
     }
 
@@ -31,7 +32,8 @@ Club.DraughtsDefaultSolver = class DraughtsDefaultSolver {
     }
 
     complete (result) {
-        const delay = this.constructor.FINAL_DELAY - (Date.now() - this.startTime);
+        const elapsed = Date.now() - this.startTime;
+        const delay = this.constructor.FINAL_DELAY - elapsed;
         return setTimeout(() => this.done?.(result), delay);
     }
 };

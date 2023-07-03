@@ -25,6 +25,7 @@ Jam.I18n.draughts = {
     'Lost': 'Поражений',
 
     'Offer a draw': 'Предложить ничью',
+    'Optional capture': 'Необязательный захват',
 
     'Ready': 'Готов',
     'Reject': 'Отклонить',
@@ -33,6 +34,8 @@ Jam.I18n.draughts = {
 
     'The opponent has resigned': 'Соперник сдался',
     'Thinking...': 'Думаю...',
+
+    'Uncrowned piece can jump backwards': 'Шашка может захватывать назад',
 
     'Waiting...': 'Жду...',
     'Winner': 'Победитель',

@@ -116,7 +116,8 @@ Club.Draughts = class Draughts extends Club.Play {
 
     resolveGameLabel () {
         if (this.options.losing) {
-            this.setGameLabel(this.getOptionAttr('losing').label);
+            const attr = this.getOptionAttr('losing');
+            this.setGameLabel(attr.label);
         }
     }
 
@@ -165,7 +166,8 @@ Club.Draughts = class Draughts extends Club.Play {
     }
 
     exportData () {
-        return Object.assign(super.exportData(), {
+        const data = super.exportData();
+        return Object.assign(data, {
             events: this.events.items,
             pos: this.master.pos
         });

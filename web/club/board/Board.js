@@ -55,7 +55,8 @@ Club.DraughtsBoard = class DraughtsBoard {
     }
 
     resize () {
-        this.play.$container.css('--board-size', `${this.$container.width()}px`);
+        const width = this.$container.width();
+        this.play.$container.css('--board-size', `${width}px`);
     }
 
     serialize () {

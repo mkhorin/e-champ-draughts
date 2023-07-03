@@ -65,9 +65,9 @@ Club.DraughtsWay = class DraughtsWay {
     transit () {
         let result = $.Deferred().resolve();
         this.points.forEach((point, index) => {
-            result = index > 0
-                ? result.then(this.transitPoint.bind(this, point, index))
-                : result;
+            if (index > 0) {
+                result = result.then(this.transitPoint.bind(this, point, index));
+            }
         });
         return result;
     }

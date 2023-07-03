@@ -12,6 +12,8 @@ module.exports = class Ways {
     constructor (play) {
         this.play = play;
         this.board = play.board;
+        this.backCapture = play.options.backCapture;
+        this.optionalCapture = play.options.optionalCapture;
     }
 
     isEmpty () {
@@ -34,7 +36,7 @@ module.exports = class Ways {
         this.moverPieces = this.play.pieces.getByColor(mover.color);
         this.ways = [];
         this.resolveCaptures();
-        if (!this.ways.length) {
+        if (this.optionalCapture || !this.ways.length) {
             this.resolveMoves();
         }
     }
@@ -77,7 +79,9 @@ module.exports = class Ways {
     }
 
     appendWay (cell, crowned) {
-        const way = new Way(this.way.piece, [this.way.points[0], {cell, crowned}]);
+        const start = this.way.points[0];
+        const end = {cell, crowned};
+        const way = new Way(this.way.piece, [start, end]);
         this.ways.push(way);
     }
 
@@ -124,7 +128,7 @@ module.exports = class Ways {
             }
             if (captured && !nextCapture) {
                 for (const point of points) {
-                    const points = this.way.points.slice();
+                    const points = [...this.way.points];
                     points.push(point);
                     const way = new Way(this.way.piece, points);
                     this.ways.push(way);
@@ -155,14 +159,16 @@ module.exports = class Ways {
     resolveManCaptures () {
         let captured = false;
         let point = this.way.getLast();
-        for (let [dx, dy] of this.constructor.STEPS) {
+        let steps = this.backCapture ? this.constructor.STEPS : this.forwardSteps;
+        for (let [dx, dy] of steps) {
             let x = point.cell.x + dx;
             let y = point.cell.y + dy;
-            let piece = this.board.getCellByPos(x, y)?.piece;
+            let cell = this.board.getCellByPos(x, y);
+            let piece = cell?.piece;
             if (!this.canCapture(piece)) {
                 continue;
             }
-            let cell = this.board.getCellByPos(x += dx, y += dy);
+            cell = this.board.getCellByPos(x += dx, y += dy);
             if (!cell || cell.piece) {
                 continue;
             }
@@ -173,7 +179,7 @@ module.exports = class Ways {
                 ? this.resolveKingCaptures()
                 : this.resolveManCaptures();
             if (!nextCapture) {
-                const way = new Way(this.way.piece, this.way.points.slice());
+                const way = new Way(this.way.piece, [...this.way.points]);
                 this.ways.push(way);
             }
             this.way.points.pop();

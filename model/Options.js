@@ -15,6 +15,16 @@ module.exports = class Options extends Base {
                 view: 'checkbox',
                 format: 'boolean'
             }, {
+                name: 'backCapture',
+                label: 'Uncrowned piece can jump backwards',
+                view: 'checkbox',
+                format: 'boolean'
+            }, {
+                name: 'optionalCapture',
+                label: 'Optional capture',
+                view: 'checkbox',
+                format: 'boolean'
+            }, {
                 name: 'darkFirst',
                 label: 'Dark turn first',
                 view: 'checkbox',
@@ -26,7 +36,7 @@ module.exports = class Options extends Base {
                 view: 'string'
             }],
             RULES: [
-                [['losing', 'darkFirst'],  'checkbox'],
+                [['losing', 'backCapture', 'optionalCapture', 'darkFirst'],  'checkbox'],
                 [['initialPosition'],  'validateInitialPosition']
             ]
         };

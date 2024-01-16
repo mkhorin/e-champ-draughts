@@ -4,7 +4,7 @@
 Club.DraughtsEndEvent = class DraughtsEndEvent extends Club.DraughtsEvent {
 
     process () {
-        const data = this.data;
+        const {data} = this;
         this.getPlayer(data.winner)?.setWinner();
         this.getPlayer(data.loser)?.setLoser();
         this.getPlayer(data.draw1)?.setDraw();

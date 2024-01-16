@@ -63,8 +63,7 @@ module.exports = class Ways {
 
     resolveKingMoves () {
         for (const [dx, dy] of this.constructor.STEPS) {
-            let x = this.way.piece.cell.x;
-            let y = this.way.piece.cell.y;
+            let {x, y} = this.way.piece.cell;
             let cell = null;
             while (true) {
                 x += dx;
@@ -104,8 +103,7 @@ module.exports = class Ways {
             }
             piece.captured = true;
             let cell = null;
-            let x = piece.cell.x;
-            let y = piece.cell.y;
+            let {x, y} = piece.cell;
             let nextCapture = false;
             let points = [];
             while (true) {
@@ -146,8 +144,7 @@ module.exports = class Ways {
     }
 
     getClosestPiece (cell, dx, dy) {
-        let x = cell.x;
-        let y = cell.y;
+        let {x, y} = cell;
         do {
             x += dx;
             y += dy;
